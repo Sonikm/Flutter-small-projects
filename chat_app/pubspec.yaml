@@ -1,4 +1,4 @@
-name: provider_tutorial
+name: chat_app
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -35,8 +35,9 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  provider: ^6.1.2
-  google_nav_bar: ^5.0.6
+  dash_chat_2: ^0.0.20
+  chat_gpt_sdk: ^3.0.3
+  http: ^1.2.0
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider_tutorial/pages/challenge.dart';
 import 'package:provider_tutorial/pages/home_page.dart';
 import 'package:provider_tutorial/pages/settings_page.dart';
@@ -11,7 +12,7 @@ class Skeleton extends StatefulWidget {
 }
 
 class _SkeletonState extends State<Skeleton> {
-  int _selectedIndex = 2;
+  int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -19,34 +20,60 @@ class _SkeletonState extends State<Skeleton> {
     });
   }
 
- final List<Widget> _pages = [HomePage(), SettingsPage(), Challenge()];
+  final List<Widget> _pages = [HomePage(), SettingsPage(), Challenge()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // drawer: Drawer(),
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: _pages,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
+      body: _pages[_selectedIndex],
+      bottomNavigationBar: GNav(
+        gap: 8,
+        activeColor: Colors.red,
+        iconSize: 24,
+        tabs: [
+          GButton(
+            icon: Icons.home,
+            text: 'Home',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: "Settings",
+          GButton(
+            icon: Icons.favorite,
+            text: 'Likes',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.file_copy),
-            label: "Challenge",
+          GButton(
+            icon: Icons.search,
+            text: "Search",
           ),
         ],
+        selectedIndex: _selectedIndex,
+        onTabChange: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
       ),
+      // // drawer: Drawer(),
+      // body: IndexedStack(
+      //   index: _selectedIndex,
+      //   children: _pages,
+      // ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   currentIndex: _selectedIndex,
+      //   onTap: _onItemTapped,
+      //   items: const [
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.home),
+      //       label: "Home",
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.settings),
+      //       label: "Settings",
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.file_copy),
+      //       label: "Challenge",
+      //     ),
+      //   ],
+      // ),
     );
   }
 }
